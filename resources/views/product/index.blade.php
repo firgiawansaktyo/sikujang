@@ -8,7 +8,7 @@
                 <h2>Daftar produk</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('ItemCRUD.create') }}"> Tambah produk baru</a>
+                <a class="btn btn-success" href="{{ route('product.create') }}"> Tambah produk baru</a>
             </div>
         </div>
     </div>
@@ -23,16 +23,18 @@
         <tr>
             <th>No</th>
             <th>Nama produk</th>
+            <th>Harga produk</th>
             <th>Pilihan</th>
         </tr>
     @foreach ($products as $key => $product)
     <tr>
         <td>{{ ++$i }}</td>
         <td>{{ $product->product_name }}</td>
+        <td>{{ $product->product_price }}</td>
         <td>
-            <a class="btn btn-info" href="{{ route('ItemCRUD.show',$product->product_id) }}">Tampilkan</a>
-            <a class="btn btn-primary" href="{{ route('ItemCRUD.edit',$product->product_id) }}">Ubah</a>
-            {{Form::open(['method' => 'DELETE','route' => ['ItemCRUD.destroy', $product->product_id],'style'=>'display:inline']) }}
+            <a class="btn btn-info" href="{{ route('product.show',$product->product_id) }}">Tampilkan</a>
+            <a class="btn btn-primary" href="{{ route('product.edit',$product->product_id) }}">Ubah</a>
+            {{Form::open(['method' => 'DELETE','route' => ['product.destroy', $product->product_id],'style'=>'display:inline']) }}
             {{Form::submit('Hapus', ['class' => 'btn btn-danger']) }}
             {{Form::close() }}
         </td>

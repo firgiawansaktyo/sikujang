@@ -31,7 +31,7 @@ Route::get('/karyawan', function()
 	return View::make('karyawan');
 });
 
-Route::resource('ItemCRUD','ItemCRUDController');
+Route::resource('product','ProductController');
 Route::resource('AuthController','Auth/AuthController');
 
 Route::get('/dataproduk', function()

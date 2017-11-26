@@ -35,6 +35,12 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
+                <strong>Harga produk:</strong>
+                {{ Form::textarea('product_price', null, array('placeholder' => 'Harga produk','class' => 'form-control','style'=>'height:40px')) }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
                 <strong>Deskripsi produk:</strong>
                 {{ Form::textarea('product_desc', null, array('placeholder' => 'Deskripsi Produk','class' => 'form-control','style'=>'height:100px')) }}
             </div>

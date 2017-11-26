@@ -8,7 +8,7 @@
                 <h2>Ubah produk</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('ItemCRUD.index') }}"> Kembali</a>
+                <a class="btn btn-primary" href="{{ route('product.index') }}"> Kembali</a>
             </div>
         </div>
     </div>
@@ -24,20 +24,25 @@
         </div>
     @endif
 
-    {{ Form::model($item, ['method' => 'PATCH','route' => ['ItemCRUD.update', $product->product_id]]) }}
+    {{ Form::model($product, ['method' => 'PATCH','route' => ['product.update', $product->product_id]]) }}
     <div class="row">
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Nama produk</strong>
-                {{ Form::text('Nama', null, array('placeholder' => 'product_name','class' => 'form-control')) }}
+                {{ Form::text('product_name', null, array('placeholder' => 'product_name','class' => 'form-control')) }}
             </div>
         </div>
-
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Harga produk</strong>
+                {{ Form::text('product_price', null, array('placeholder' => 'product_price','class' => 'form-control')) }}
+            </div>
+        </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Deskripsi produk</strong>
-                {{ Form::textarea('Deskripsi', null, array('placeholder' => 'product_desc','class' => 'form-control','style'=>'height:100px')) }}
+                {{ Form::textarea('product_desc', null, array('placeholder' => 'product_desc','class' => 'form-control','style'=>'height:100px')) }}
             </div>
         </div>
 

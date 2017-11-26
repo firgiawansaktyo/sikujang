@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Product;
 
-class ItemCRUDController extends Controller
+
+class ProductController extends Controller
 {
 
     /**
@@ -17,7 +19,7 @@ class ItemCRUDController extends Controller
     public function index(Request $request)
     {
         $products = Product::orderBy('product_id','product_name')->paginate(5);
-        return view('ItemCRUD.index',compact('products'))
+        return view('product.index',compact('products'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -28,7 +30,7 @@ class ItemCRUDController extends Controller
      */
     public function create()
     {
-        return view('ItemCRUD.create');
+        return view('product.create');
     }
 
 
@@ -43,11 +45,12 @@ class ItemCRUDController extends Controller
     {
         $this->validate($request, [
             'product_name' => 'required',
+            'product_price' => 'required',
             'product_desc' => 'required'
         ]);
 
         Product::create($request->all());
-        return redirect()->route('ItemCRUD.index')
+        return redirect()->route('product.index')
                         ->with('success','Item created successfully');
     }
 
@@ -60,7 +63,7 @@ class ItemCRUDController extends Controller
     public function show($product_id)
     {
         $product = Product::find($product_id);
-        return view('ItemCRUD.show',compact('product'));
+        return view('product.show',compact('product'));
     }
 
     /**
@@ -72,7 +75,7 @@ class ItemCRUDController extends Controller
     public function edit($product_id)
     {
         $product = Product::find($product_id);
-        return view('ItemCRUD.edit',compact('product'));
+        return view('product.edit',compact('product'));
     }
 
     /**
@@ -86,11 +89,12 @@ class ItemCRUDController extends Controller
     {
         $this->validate($request, [
             'product_desc' => 'required',
+            'product_price' => 'required',
             'product_name' => 'required',
         ]);
 
-        Item::find($product_id)->update($request->all());
-        return redirect()->route('ItemCRUD.index')
+        Product::find($product_id)->update($request->all());
+        return redirect()->route('product.index')
                         ->with('success','Item updated successfully');
     }
 
@@ -103,7 +107,7 @@ class ItemCRUDController extends Controller
     public function destroy($product_id)
     {
         Product::find($product_id)->delete();
-        return redirect()->route('ItemCRUD.index')
+        return redirect()->route('product.index')
                         ->with('success','Product deleted successfully');
     }
 }
