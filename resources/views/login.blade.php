@@ -9,7 +9,7 @@
                         <form role="form">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Username" name="username" type="text" autofocus>
+                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Password" name="password" type="password" value="">
@@ -20,7 +20,7 @@
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="{{ url ('') }}" class="btn btn-lg btn-success btn-block">Login</a>
+                                <a href="{{ url ('dashboard') }}" class="btn btn-lg btn-success btn-block">Login</a>
                             </fieldset>
                         </form>
                     

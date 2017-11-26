@@ -12,7 +12,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url ('') }}">SIKUJANG</a>
+                <a class="navbar-brand" href="{{ url ('') }}">Sikujang Dafataman</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -245,7 +245,18 @@
                             <!-- /input-group -->
                         </li>
                         <li {{ (Request::is('/') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="{{ url ('/dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        <li >
+                            <a href="{{ url ('karyawan') }}"><i class="fa fa-edit fa-fw"></i> Karyawan</a>
+                        </li>
+                        <li >
+                            <a href="{{ url ('permintaan') }}"><i class="fa fa-edit fa-fw"></i> Permintaan</a>
+                        </li>
+                        <li >
+                            <a href="{{ url ('ItemCRUD') }}"><i class="fa fa-edit fa-fw"></i> Produk</a>
+                        </li>
+                            <!-- /.nav-second-level -->
                         </li>
                         <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>
                             <a href="{{ url ('charts') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Charts</a>

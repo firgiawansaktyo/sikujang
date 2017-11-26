@@ -13,12 +13,41 @@
 
 Route::get('/', function()
 {
+	return View::make('login');
+});
+
+Route::get('/dashboard', function()
+{
 	return View::make('home');
 });
 
 Route::get('/charts', function()
 {
 	return View::make('mcharts');
+});
+
+Route::get('/karyawan', function()
+{
+	return View::make('karyawan');
+});
+
+Route::resource('ItemCRUD','ItemCRUDController');
+Route::resource('AuthController','Auth/AuthController');
+
+Route::get('/dataproduk', function()
+{
+	return View::make('dataproduk');
+});
+
+
+Route::get('/permintaan', function()
+{
+	return View::make('permintaan');
+});
+
+Route::get('/produk', function()
+{
+	return View::make('produk');
 });
 
 Route::get('/tables', function()
@@ -76,3 +105,5 @@ Route::get('/documentation', function()
 {
 	return View::make('documentation');
 });
+
+Route::get('/about', 'PagesAbout@home');
