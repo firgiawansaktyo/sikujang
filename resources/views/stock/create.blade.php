@@ -5,10 +5,10 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Tambah produk</h2>
+                <h2>Tambah data produksi</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('product.index') }}"> Kembali</a>
+                <a class="btn btn-primary" href="{{ route('stock.index') }}"> Kembali</a>
             </div>
         </div>
     </div>
@@ -25,27 +25,34 @@
         </div>
     @endif
 
-    {{ Form::open(array('route' => 'product.store','method'=>'POST')) }}
+    {{ Form::open(array('route' => 'stock.store','method'=>'POST')) }}
     <div class="row">
+      <label class="col-sm-1 control-label">Tahapan</label>
+      <div class="col-sm-2">
+      <select name="stage" class="form-control">
+          <option value="Insiasi">Inisiasi</option>
+          <option value="Aklimatisasi">Aklimatisasi</option>
+          <option value="Transplanting">Transplanting</option>
+      </select>
+    </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Nama produk:</strong>
-                {{ Form::textarea('product_name', null, array('placeholder' => 'Nama produk','class' => 'form-control','style'=>'height:40px')) }}
+                <strong>Produk</strong>
+                {{ Form::textarea('products_id', null, array('placeholder' => 'Id produk','class' => 'form-control','style'=>'height:40px')) }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Harga produk:</strong>
-                {{ Form::textarea('product_price', null, array('placeholder' => 'Harga produk','class' => 'form-control','style'=>'height:40px')) }}
+                <strong>Penambahan</strong>
+                {{ Form::textarea('stock_increase', null, array('placeholder' => 'Deskripsi Produk','class' => 'form-control','style'=>'height:40px')) }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Deskripsi produk:</strong>
-                {{ Form::textarea('product_desc', null, array('placeholder' => 'Deskripsi Produk','class' => 'form-control','style'=>'height:100px')) }}
+                <strong>Pengurangan</strong>
+                {{ Form::textarea('stock_decrease', null, array('placeholder' => 'Deskripsi Produk','class' => 'form-control','style'=>'height:40px')) }}
             </div>
         </div>
-
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>
         </div>
