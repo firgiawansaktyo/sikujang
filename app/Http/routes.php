@@ -32,7 +32,8 @@ Route::get('/karyawan', function()
 });
 
 Route::resource('product','ProductController');
-Route::resource('demand','DemandController');
+Route::resource('stock','StockController');
+Route::resource('AuthController','Auth/AuthController');
 
 Route::get('/dataproduk', function()
 {
