@@ -8,7 +8,7 @@
                 <h2>Tambah produk</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('product.index') }}"> Kembali</a>
+                <a class="btn btn-primary" href="{{ route('demand.index') }}"> Kembali</a>
             </div>
         </div>
     </div>
@@ -24,25 +24,30 @@
             </ul>
         </div>
     @endif
-
-    {{ Form::open(array('route' => 'product.store','method'=>'POST')) }}
+    {{ Form::open(array('route' => 'demand.store','method'=>'POST')) }}
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Nama produk:</strong>
-                {{ Form::textarea('product_name', null, array('placeholder' => 'Nama produk','class' => 'form-control','style'=>'height:40px')) }}
+                <strong>Nama pemesan :</strong>
+                {{ Form::textarea('client_name', null, array('placeholder' => 'Nama pemesan','class' => 'form-control','style'=>'height:40px')) }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Harga produk:</strong>
-                {{ Form::textarea('product_price', null, array('placeholder' => 'Harga produk','class' => 'form-control','style'=>'height:40px')) }}
+                <strong>Pilih produk:</strong>
+                {{Form::select('product_id',$product,null,array('class'=>'form-control'))}}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Deskripsi produk:</strong>
-                {{ Form::textarea('product_desc', null, array('placeholder' => 'Deskripsi Produk','class' => 'form-control','style'=>'height:100px')) }}
+                <strong>Kuantitas :</strong>
+                {{ Form::textarea('demand_quantity', null, array('placeholder' => 'Kuantitas','class' => 'form-control','style'=>'height:40px')) }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Catatan :</strong>
+                {{ Form::textarea('demand_note', null, array('placeholder' => 'Catatan Produk','class' => 'form-control','style'=>'height:100px')) }}
             </div>
         </div>
 

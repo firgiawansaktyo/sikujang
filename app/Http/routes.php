@@ -32,7 +32,7 @@ Route::get('/karyawan', function()
 });
 
 Route::resource('product','ProductController');
-Route::resource('AuthController','Auth/AuthController');
+Route::resource('demand','DemandController');
 
 Route::get('/dataproduk', function()
 {

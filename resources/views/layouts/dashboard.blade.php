@@ -251,7 +251,7 @@
                             <a href="{{ url ('karyawan') }}"><i class="fa fa-edit fa-fw"></i> Karyawan</a>
                         </li>
                         <li >
-                            <a href="{{ url ('permintaan') }}"><i class="fa fa-edit fa-fw"></i> Permintaan</a>
+                            <a href="{{ url ('demand') }}"><i class="fa fa-edit fa-fw"></i> Permintaan</a>
                         </li>
                         <li >
                             <a href="{{ url ('product') }}"><i class="fa fa-edit fa-fw"></i> Produk</a>
