@@ -29,7 +29,7 @@
           <div class="col-xs-12 col-sm-12 col-md-12">
               <div class="form-group">
                   <strong>Produk</strong>
-                  {{ Form::textarea('product_id', null, array('placeholder' => 'Id produk','class' => 'form-control','style'=>'height:40px')) }}
+                  {{Form::select('product_id',$product,null,array('class'=>'form-control'))}}
               </div>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-12">

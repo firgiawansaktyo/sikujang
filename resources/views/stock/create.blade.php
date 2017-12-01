@@ -30,17 +30,17 @@
       <label class="col-sm-1 control-label">Tahapan</label>
       <div class="col-sm-2">
       <select name="stage" class="form-control">
-          <option value="Insiasi">Inisiasi</option>
+          <option value="Inisiasi">Inisiasi</option>
           <option value="Aklimatisasi">Aklimatisasi</option>
           <option value="Transplanting">Transplanting</option>
       </select>
     </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Produk</strong>
-                {{ Form::textarea('product_id', null, array('placeholder' => 'Id produk','class' => 'form-control','style'=>'height:40px')) }}
-            </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Pilih produk:</strong>
+            {{Form::select('product_id',$product,null,array('class'=>'form-control'))}}
         </div>
+    </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Penambahan</strong>

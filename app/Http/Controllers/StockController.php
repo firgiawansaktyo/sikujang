@@ -19,9 +19,14 @@ class StockController extends Controller
      */
     public function index(Request $request)
     {
-        $stocks = Stock::orderBy('stock_id')->paginate(5);
-        return view('stock.index',compact('stocks'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+      $cari = $request->get('search');
+      $stocks = Stock::where('stage','LIKE','%'.$cari.'%')->paginate(5);
+      return view('stock.index',compact('stocks'))
+          ->with('i', ($request->input('page', 1) - 1) * 5);
+
+#        $stocks = Stock::orderBy('stock_id')->paginate(5);
+#        return view('stock.index',compact('stocks'))
+#            ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -31,7 +36,8 @@ class StockController extends Controller
      */
     public function create()
     {
-        return view('stock.create');
+        $product = \App\product::lists('product_name','product_id');
+        return view('stock.create')->with('product',$product);
     }
 
 
@@ -51,7 +57,8 @@ class StockController extends Controller
             'stage' => 'required'
         ]);
 
-        Stock::create($request->all());
+
+        $stock = Stock::create($request->all());
         return redirect()->route('stock.index')
                         ->with('success','Data berhasil ditambahkan');
     }
@@ -76,8 +83,9 @@ class StockController extends Controller
      */
     public function edit($stock_id)
     {
+        $product = \App\product::lists('product_name', 'product_id');
         $stock = Stock::find($stock_id);
-        return view('stock.edit',compact('stock'));
+        return view('stock.edit',compact('stock','product'));
     }
 
     /**
@@ -93,10 +101,9 @@ class StockController extends Controller
           'product_id' => 'required',
           'stock_increase' => 'required',
           'stock_decrease' => 'required',
-          'stage' => 'required'
         ]);
 
-        Product::find($stock_id)->update($request->all());
+        Stock::find($stock_id)->update($request->all());
         return redirect()->route('stock.index')
                         ->with('success','Item updated successfully');
     }
@@ -107,6 +114,14 @@ class StockController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+     public function search(Request $request)
+     {
+         $cari = $request->get('search');
+         $stocks = Stock::where('stage','LIKE','%'.$cari.'%')->paginate(5);
+         return view('stock.index',compact('stocks'))
+             ->with('i', ($request->input('page', 1) - 1) * 5);
+     }
+
     public function destroy($stock_id)
     {
         Stock::find($stock_id)->delete();

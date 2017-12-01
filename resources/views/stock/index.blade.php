@@ -13,25 +13,47 @@
         </div>
     </div>
 
+    <!-- Form Pencarian -->
+    <div class="col-md-10">
+    {{ Form::open(['method'=>'GET','route'=>'stock.index','role'=>'search']) }}
+            <!-- input type="text" class="form-control" name="search" placeholder="Search..." -->
+            <div class="col-sm-2">
+            <select name="search" class="form-control">
+                <option value="Inisiasi">Inisiasi</option>
+                <option value="Aklimatisasi">Aklimatisasi</option>
+                <option value="Transplanting">Transplanting</option>
+            </select>
+          </div>
+          <button class="btn btn-default" type="submit">Cari</button>
+       </span>
+             </span>
+         </div>
+    {{ Form::close() }}
+    </div>
+
+
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
             <p>{{ $message }}</p>
         </div>
     @endif
 
+    <br>
     <table class="table table-bordered">
         <tr>
             <th>No</th>
-            <th>Id produk</th>
+            <th>Tanggal</th>
+            <th>Nama produk</th>
             <th>Tahapan</th>
             <th>Penambahan</th>
             <th>Pengurangan</th>
             <th>Pilihan</th>
         </tr>
-    @foreach ($stocks as $key => $stock)
+    @foreach ($stocks as $stock)
     <tr>
         <td>{{ ++$i }}</td>
-        <td>{{ $stock->product_id }}</td>
+        <td>{{ $stock->created_at }}</td>
+        <td>{{ \App\product::find($stock->product_id)->product_name }}</td>
         <td>{{ $stock->stage }}</td>
         <td>{{ $stock->stock_increase }}</td>
         <td>{{ $stock->stock_decrease }}</td>
