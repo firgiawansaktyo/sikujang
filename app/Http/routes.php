@@ -16,6 +16,8 @@ Route::get('/', function()
 	return View::make('login');
 });
 
+Route::post('/home','LoginController@login');
+
 Route::get('/dashboard', function()
 {
 	return View::make('home');

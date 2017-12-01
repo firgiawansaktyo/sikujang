@@ -6,8 +6,9 @@
             <br /><br /><br />
                @section ('login_panel_title','Please Sign In')
                @section ('login_panel_body')
-                        <form role="form">
+                        <form method="post" action="/home">
                             <fieldset>
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">    
                                 <div class="form-group">
                                     <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
                                 </div>
@@ -20,7 +21,17 @@
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="{{ url ('dashboard') }}" class="btn btn-lg btn-success btn-block">Login</a>
+                                 <input class="btn btn-lg btn-success btn-block" type="submit" name="login" value="Login">
+                                <br>
+               @if(count($errors))
+                <div class = "alert alert-danger">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif  
                             </fieldset>
                         </form>
                     
@@ -28,5 +39,6 @@
                 @include('widgets.panel', array('as'=>'login', 'header'=>true))
             </div>
         </div>
+
     </div>
 @stop
