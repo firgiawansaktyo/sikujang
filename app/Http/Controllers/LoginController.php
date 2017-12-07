@@ -7,7 +7,10 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesResources;
 use DB;
+<<<<<<< HEAD
 use Khill\Lavacharts\Lavacharts;
+=======
+>>>>>>> df758d9bdd868b4400fd7c26fea9cd5133ca9fa6
 
 class LoginController extends Controller
 {
@@ -15,6 +18,7 @@ class LoginController extends Controller
      {
       $email = $req->input('email');
       $password = $req->input('password');
+<<<<<<< HEAD
       $checkLogin = DB::table('users')->where(['email'=>$email,'password'=>$password])->get();
       //echo $checkLogin;
       if(count($checkLogin)  >0)
@@ -42,6 +46,15 @@ class LoginController extends Controller
               'title' => 'grafik data produksi'
           ]);
               return View('home',['produk'=>$produk,'demand'=>$permintaan,'lava'=>$lava]);
+=======
+
+      $checkLogin = DB::table('users')->where(['email'=>$email,'password'=>$password])->get();
+      if(count($checkLogin)  >0)
+      {
+        return view('home');
+
+      
+>>>>>>> df758d9bdd868b4400fd7c26fea9cd5133ca9fa6
       }
       else
       {
