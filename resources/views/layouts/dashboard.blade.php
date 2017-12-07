@@ -248,7 +248,10 @@
                             <a href="{{ url ('/dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li >
-                            <a href="{{ url ('karyawan') }}"><i class="fa fa-edit fa-fw"></i> Karyawan</a>
+                            <a href="{{ url ('user') }}"><i class="fa fa-edit fa-fw"></i> Karyawan</a>
+                        </li>                        
+                        <li >
+                            <a href="{{ url ('grafik') }}"><i class="fa fa-edit fa-fw"></i> Grafik</a>
                         </li>
                         <li >
                             <a href="{{ url ('demand') }}"><i class="fa fa-edit fa-fw"></i> Permintaan</a>
