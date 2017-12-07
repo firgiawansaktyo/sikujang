@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use Khill\Lavacharts\Lavacharts;
+use DB;
 
 class DashboardController extends Controller {
 
@@ -32,7 +33,8 @@ class DashboardController extends Controller {
 		             ->addNumberColumn('Aklimatisasi')
 		             ->addNumberColumn('Transplanting');
 		foreach(\App\stock::all() as $stock){
-			$dataProduksi->addRow([$stock->created_at->format('Y-m-d'),67,65,62]);
+			$inisiasi = DB::table('stocks')->where('created_at',$stock->created_at)->count();
+			$dataProduksi->addRow([$stock->created_at->format('Y-m-d'),$inisiasi,65,62]);
 		}
 		$lava->LineChart('Temps', $dataProduksi, [
 		    'title' => 'grafik data produksi'

@@ -18,15 +18,11 @@ Route::get('/', function()
 
 Route::post('/home','LoginController@login');
 
-<<<<<<< HEAD
+
 
 Route::get('/dashboard', 'DashboardController@index');
-=======
-Route::get('/dashboard', function()
-{
-	return View::make('home');
-});
->>>>>>> df758d9bdd868b4400fd7c26fea9cd5133ca9fa6
+
+
 
 Route::get('/charts', function()
 {
@@ -42,7 +38,7 @@ Route::resource('product','ProductController');
 Route::resource('demand','DemandController');
 Route::resource('stock','StockController');
 Route::resource('AuthController','Auth/AuthController');
-
+Route::resource('user','UserController');
 Route::get('/dataproduk', function()
 {
 	return View::make('dataproduk');
