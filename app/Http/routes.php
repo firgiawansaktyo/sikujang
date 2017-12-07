@@ -16,10 +16,10 @@ Route::get('/', function()
 	return View::make('login');
 });
 
-Route::get('/dashboard', function()
-{
-	return View::make('home');
-});
+Route::post('/home','LoginController@login');
+
+
+Route::get('/dashboard', 'DashboardController@index');
 
 Route::get('/charts', function()
 {
@@ -33,6 +33,8 @@ Route::get('/karyawan', function()
 
 Route::resource('product','ProductController');
 Route::resource('demand','DemandController');
+Route::resource('stock','StockController');
+Route::resource('AuthController','Auth/AuthController');
 
 Route::get('/dataproduk', function()
 {

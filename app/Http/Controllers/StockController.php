@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Product;
+use App\Stock;
 
 
-class ProductController extends Controller
+
+class StockController extends Controller
 {
 
     /**
@@ -18,9 +19,14 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::orderBy('product_id','product_name')->paginate(5);
-        return view('product.index',compact('products'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+      $cari = $request->get('search');
+      $stocks = Stock::where('stage','LIKE','%'.$cari.'%')->paginate(5);
+      return view('stock.index',compact('stocks'))
+          ->with('i', ($request->input('page', 1) - 1) * 5);
+
+#        $stocks = Stock::orderBy('stock_id')->paginate(5);
+#        return view('stock.index',compact('stocks'))
+#            ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -30,7 +36,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product.create');
+        $product = \App\product::lists('product_name','product_id');
+        return view('stock.create')->with('product',$product);
     }
 
 
@@ -44,14 +51,16 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'product_name' => 'required',
-            'product_price' => 'required',
-            'product_desc' => 'required'
+            'product_id' => 'required',
+            'stock_increase' => 'required',
+            'stock_decrease' => 'required',
+            'stage' => 'required'
         ]);
 
-        Product::create($request->all());
-        return redirect()->route('product.index')
-                        ->with('success','Item created successfully');
+
+        $stock = Stock::create($request->all());
+        return redirect()->route('stock.index')
+                        ->with('success','Data berhasil ditambahkan');
     }
 
     /**
@@ -60,10 +69,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($product_id)
+    public function show($stock_id)
     {
-        $product = Product::find($product_id);
-        return view('product.show',compact('product'));
+        $stock = Stock::find($stock_id);
+        return view('stock.show',compact('stock'));
     }
 
     /**
@@ -72,10 +81,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($product_id)
+    public function edit($stock_id)
     {
-        $product = Product::find($product_id);
-        return view('product.edit',compact('product'));
+        $product = \App\product::lists('product_name', 'product_id');
+        $stock = Stock::find($stock_id);
+        return view('stock.edit',compact('stock','product'));
     }
 
     /**
@@ -85,16 +95,16 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $product_id)
+    public function update(Request $request, $stock_id)
     {
         $this->validate($request, [
-            'product_desc' => 'required',
-            'product_price' => 'required',
-            'product_name' => 'required',
+          'product_id' => 'required',
+          'stock_increase' => 'required',
+          'stock_decrease' => 'required',
         ]);
 
-        Product::find($product_id)->update($request->all());
-        return redirect()->route('product.index')
+        Stock::find($stock_id)->update($request->all());
+        return redirect()->route('stock.index')
                         ->with('success','Item updated successfully');
     }
 
@@ -104,10 +114,18 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($product_id)
+     public function search(Request $request)
+     {
+         $cari = $request->get('search');
+         $stocks = Stock::where('stage','LIKE','%'.$cari.'%')->paginate(5);
+         return view('stock.index',compact('stocks'))
+             ->with('i', ($request->input('page', 1) - 1) * 5);
+     }
+
+    public function destroy($stock_id)
     {
-        Product::find($product_id)->delete();
-        return redirect()->route('product.index')
+        Stock::find($stock_id)->delete();
+        return redirect()->route('stock.index')
                         ->with('success','Product deleted successfully');
     }
 }

@@ -144,6 +144,7 @@ return [
 		'App\Providers\ConfigServiceProvider',
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
+		'Khill\Lavacharts\Laravel\LavachartsServiceProvider',
 		'Collective\Html\HtmlServiceProvider',
 
 	],
@@ -195,6 +196,7 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
 		'Form' 		=> 'Collective\Html\FormFacade',
   		'Html' 		=> 'Collective\Html\HtmlFacade',
+  		'Lava' 		=> 'Khill\Lavacharts\Laravel\LavachartsFacade'
 
 	],
 

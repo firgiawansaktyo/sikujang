@@ -1,4 +1,10 @@
-<?php namespace App\Http\Controllers;
+<?php 
+namespace App\Http\Controllers;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\product;
 
 class HomeController extends Controller {
 
@@ -30,7 +36,13 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('home');
+		$i = 0;
+		echo CURDATE();
+		foreach(product::all() as $product){
+			if (DATE($product->created_at) == CURDATE())
+				++$i;
+		}
+		return View('home')->with('i',$i);
 	}
 
 }
