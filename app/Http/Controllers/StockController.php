@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Stock;
-
-
+use DB;
 
 class StockController extends Controller
 {
@@ -50,15 +49,40 @@ class StockController extends Controller
      */
     public function store(Request $request)
     {
+        $product = \App\product::lists('product_name','product_id');
+
         $this->validate($request, [
             'product_id' => 'required',
             'stock_increase' => 'required',
             'stock_decrease' => 'required',
-            'stage' => 'required'
+            'stage' => 'required',
+            'stock_quantity'
         ]);
 
+        $id_prod = $request->product_id;
+        $inc = $request->stock_increase;
+        $dec = $request->stock_decrease;
+        $prev_total = DB::table('products')->where('product_id', $id_prod)->get();
+        foreach ($prev_total as $pq)
+          $now = $pq->product_quantity;
+        $total = $now + $inc - $dec;
 
-        $stock = Stock::create($request->all());
+
+        DB::table('products')
+          ->where('product_id',$id_prod)
+          ->update(['product_quantity' => $total]);
+
+        $stock = array(
+          'product_id' => $request->product_id,
+          'stock_increase' => $request->stock_increase,
+          'stock_decrease' => $request->stock_decrease,
+          'stock_quantity' => $total,
+          'stage'=> $request->stage,
+          );
+
+          DB::table('stocks')->insert($stock);
+
+
         return redirect()->route('stock.index')
                         ->with('success','Data berhasil ditambahkan');
     }
